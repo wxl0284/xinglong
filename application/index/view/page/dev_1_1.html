@@ -231,25 +231,63 @@
                 <div>
                    <ul>
                        <p style='color:green;'> 操作：</p>
-                         <li class='li fl'> 连接:<input type="text" value='234'> </li>
-                        <li class='li fl'>  找零:<input type="text" value='234'> </li>
-                        <li class='li fl'>   跟踪恒星:<input type="text" value='234'>  </li>
-                        <li class='li fl'>   设置目标名称:<input type="text" value='234'> </li>
-                        <li class='li fl'>  指向固定位置:<input type="text" value='234'> </li>
-                        <li class='li fl'>  轴3指向固定位置:<input type="text" value='234'> </li>
-                        <li class='li fl'>  停止:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置跟踪速度:<input type="text" value='234'> </li>
-                        <li class='li fl'>  复位:<input type="text" value='234'> </li>
-                        <li class='li fl'>   恒速运动:<input type="text" value='234'> </li>
-                        <li class='li fl'>  位置修正:<input type="text" value='234'> </li>
-                        <li class='li fl'>  镜盖操作:<input type="text" value='234'>  </li>
-                        <li class='li fl'>   焦点切换镜操作:<input type="text" value='234'> </li>
-                        <li class='li fl'>   急停:<input type="text" value='234'> </li>
-                        <li class='li fl'>   保存同步数据:<input type="text" value='234'> </li>
-                        <li class='li fl'>    跟踪卫星:<input type="text" value='234'>  </li>
-                        <li class='li fl'>  属性设置:<input type="text" value='234'> </li>
+                     <form>
+                         <li class='li fl'> <input type="radio" name='command' value='1'>
+                         连接:<input type="text" class='command' name='command1' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='2'> 
+                        找零:<input type="text" class='command' name='command2' />
+                        </li>
+                        <li class='li fl'>   <input type="radio" name='command' value='3'> 
+                        跟踪恒星: <input type="text" class='command' name='command3' />
+                        </li>
+                        <li class='li fl'>   <input type="radio" name='command' value='4'>
+                        设置目标名称:<input type="text" class='command' name='command4' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='5' />
+                        指向固定位置:<input type="text" class='command' name='command5' />
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='6' />
+                        轴3指向固定位置:<input type="text" class='command' name='command6' />
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='7' /> 
+                        停止:<input type="text" class='command' name='command7' />
+                        </li>
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='8' />
+                        设置跟踪速度:<input type="text" class='command' name='command8' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='9' />
+                        复位:<input type="text" class='command' name='command9' />
+                         </li>
+                        <li class='li fl'>   <input type="radio" name='command' value='10' />
+                        恒速运动:<input type="text" class='command' name='command10' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='command' value='11' />
+                        位置修正:<input type="text" class='command' name='command11' />
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='12' />
+                        镜盖操作:<input type="text" class='command' name='command12' />
+                         </li>
+                        <li class='li fl'>   <input type="radio" name='command' value='13' />
+                        焦点切换镜操作: <input type="text" class='command' name='command13' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='14' />
+                         急停:<input type="text" class='command' name='command14' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='command' value='15' />
+                        保存同步数据:<input type="text" class='command' name='command15' />
+                         </li>
+                        <li class='li fl'>    <input type="radio" name='command' value='16' />
+                        跟踪卫星:<input type="text" class='command' name='command16' />
+                          </li>
+                        <li class='li fl'> <input type="radio" name='command' value='17' />
+                        属性设置:<input type="text" class='command' name='command17' />
+                        </li>
+                     </form>
                    </ul>
-                   <div class="clear"></div>
+                   <div class="clear"><input type="button" name="" value="提交操作指令"></div>
+                   
                </div>
            </div>
            <!--ccd开始-->

@@ -6,7 +6,7 @@
 
 a {text-decoration:none;color:#0147C5;font-weight: bold;}
 
-input {width:103px; margin-right:7px;}  /*input框公共样式*/
+input.command {width:103px; margin-right:7px;}  /*input框公共样式*/
 
 .fl {float:left;}
 
