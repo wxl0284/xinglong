@@ -231,7 +231,7 @@
                 <div>
                    <ul>
                        <p style='color:green;'> 操作：</p>
-                     <form>
+                     <form id='xxx'>
                          <li class='li fl'> <input type="radio" name='command' value='1'>
                          连接:<input type="text" class='command' name='command1' />
                          </li>
@@ -286,8 +286,17 @@
                         </li>
                      </form>
                    </ul>
-                   <div class="clear"><input type="button" name="" value="提交操作指令"></div>
-                   
+                   <div class="clear"><input type="button" id="bbbb" value="提交操作指令"></div>
+                   <script type="text/javascript">
+                       $(function () {
+                          $("#bbbb").click(function (){
+                                var a = $('#xxx').find("input:checked + input").val();
+                            alert(a);
+                          });
+                           
+
+                       })
+                   </script>
                </div>
            </div>
            <!--ccd开始-->
