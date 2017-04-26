@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta content="text/html;charset=utf-8" http-equiv="content-type">
+     <title>兴隆台</title>
+     {load href='/static/js/jquery-1.8.3.min.js'}
+     {load href='/static/css/common.css'}
+     {load href='/static/css/dev1.css'}
+</head>
+<body>
+    {include file='./head'}
+    <div id='devs'>
+        <div id='gimbal' class="fl border">
+            <a href="javascript:;" class='selected' name='gimbalInfo'>转台</a>
+        </div>
+        <div id='ccd' class="fl border">
+            <a href="javascript:;" name='ccdInfo'>ccd</a>
+        </div>
+        <div id='focus' class="fl border">
+            <a href="javascript:;" name='focusInfo'>调焦器</a>
+        </div>
+        <div id='dome' class="fl border">
+            <a href="javascript:;" name='domeInfo'>圆顶</a>
+        </div>
+       
+    </div>
+    
+    <div id='gimbalInfo' class='devInfo border clear display'>
+    <span style='color:red'>固定属性：</span>
+        <ul>
+            <li class='li fl'>
+                经度:&nbsp&nbsp12.12.12.12
+            </li>
+            <li class='li fl'>
+                纬度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                口径:12.12.12.12
+            </li>
+            <li class='li fl'>
+                类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦比:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦距:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1最大速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2最大速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3最大速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1最大加速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2最大加速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3最大加速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1复位位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2复位位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3复位位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否有第3轴:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否有镜盖（轴5）:12.12.12.12
+            </li>
+            <li class='li fl'>
+                俯仰最低值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                温度传感器数目:12.12.12.12
+            </li>
+            <li class='li fl'>
+                湿度传感器数目:12.12.12.12
+            </li>
+            <li class='li fl'>
+                连接:12.12.12.12
+            </li>
+            <li class='li fl'>
+                找零:12.12.12.12
+            </li>
+            <li class='li fl'>
+                跟踪恒星:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置目标名称:12.12.12.12
+            </li>
+            <li class='li fl'>
+                指向固定位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3指向固定位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置轴3工作模式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                停止:12.12.12.12
+            </li>
+            <li class='li fl'>
+                复位:12.12.12.12
+            </li>
+            <li class='li fl'>
+                恒速运动:12.12.12.12
+            </li>
+            <li class='li fl'>
+                位置修正:12.12.12.12
+            </li>
+            <li class='li fl'>
+                镜盖操作:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点切换镜操作:12.12.12.12
+            </li>
+            <li class='li fl'>
+                急停:12.12.12.12
+            </li>
+            <li class='li fl'>
+                保存同步数据:12.12.12.12
+            </li>
+            <li class='li fl'>
+                跟踪卫星:12.12.12.12
+            </li>
+            <li class='li fl'>
+                属性设置:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>可变属性：</p>
+
+            <li class='li fl'>
+                时间戳:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前恒星时:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前时角:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前赤经:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前赤纬:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前J2000赤经:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前J2000赤纬:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前方位:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前俯仰:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前消旋位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标赤经:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标赤纬:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标J2000赤经:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标J2000赤纬:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标方位:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标俯仰:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标消旋位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1跟踪误差:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2跟踪误差:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3跟踪误差:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点类型索引位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点切换镜角度位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                镜盖索引位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                镜盖位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点类型目标索引位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                焦点切换镜目标角度位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                镜盖目标索引位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3速度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                跟踪目标类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标名称:12.12.12.12
+            </li>
+            <li class='li fl'>
+                大气折射修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1编码器位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2编码器位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2编码器位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3编码器位置:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3工作模式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1指向模型修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2指向模型修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3指向模型修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1人工修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2人工修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3人工修正值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                盘向:12.12.12.12
+            </li>
+            <li class='li fl'>
+                目标盘向:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴1是否找零:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴2是否找零:12.12.12.12
+            </li>
+            <li class='li fl'>
+                轴3是否找零:12.12.12.12
+            </li>
+            <li class='li fl'>
+                温度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                湿度:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>当前状态：</p>
+            <li class='li fl'>
+                连接中:12.12.12.12
+            </li>
+             <p style='color:red;' class='clear'>历史状态：</p>
+            <li class='li fl'>
+                恒速跟踪:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>错误标识：</p>
+            <li class='li fl'>
+                正常:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>警告状态：</p>
+            <li class='li fl'>
+                伺服通信失败异常:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>错误状态：</p>
+            <li class='li fl'>
+                伺服通信失败异常:12.12.12.12
+            </li>
+            <hr class='clear' />
+            <!--下面显示设备信息和操作-->
+            <p style='color:red;' class='clear'>操作区：</p>
+            <li class='li fl'>
+                连接:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                找零:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                跟踪恒星:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置目标名称:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                指向固定位置:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                轴3指向固定位置:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                停止:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置跟踪速度:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                复位:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                恒速运动:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                位置修正:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                镜盖操作:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                焦点切换镜操作:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                急停:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                保存同步数据:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                跟踪卫星:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                属性设置:<input type="text" value='234'>
+            </li>
+            <hr class='clear' />
+            <p style='color:red;' class='clear'>操作测试：</p>
+
+            <form id='dev1_control'>
+                <li class='li fl'>
+                    validFlag:UINT16<input type="text" name='validFlag'>
+                </li>
+                <li class='li fl'>
+                    startTime:UINT32<input type="text" name='startTime'>
+                </li>
+                <li class='li fl'>
+                    duration:DOUBLE64<input type="text" name='duration'>
+                </li>
+                <li class='li fl'>
+                    delay:DOUBLE64<input type="text" name='delay'>
+                </li>
+                <li class='li fl'>
+                    objectName:UINT8<input type="text" name='objectName'>
+                </li>
+                <li class='li fl'>
+                    objectType:UINT16<input type="text" name='objectType'>
+                </li>
+                <li class='li fl'>
+                    objectRightAscension:DOUBLE64<input type="text" name='objectRightAscension'>
+                </li>
+                <li class='li fl'>
+                    objectDeclination:DOUBLE64<input type="text" name='objectDeclination'>
+                </li>
+                <li class='li fl'>
+                    objectEpoch:UINT16<input type="text" name='objectEpoch'>
+                </li>
+                <li class='li fl'>
+                    objectBand:UINT8<input type="text" name='objectBand'>
+                </li>
+                <li class='li fl'>
+                    objectFilter:UINT16<input type="text" name='objectFilter'>
+                </li>
+                <li class='li fl'>
+                    isSaveImage:UINT16<input type="text" name='isSaveImage'>
+                </li>
+                <li class='li fl'>
+                    weatherGatherTime:UINT32<input type="text" name='weatherGatherTime'>
+                </li>
+                <li class='li fl'>
+                    temperature:DOUBLE64<input type="text" name='temperature'>
+                </li>
+                <li class='li fl'>
+                    humidity:DOUBLE64<input type="text" name='humidity'>
+                </li>
+                <li class='li fl'>
+                    windSpeed:DOUBLE64<input type="text" name='windSpeed'>
+                </li>
+                <li class='li fl'>
+                    pressure:DOUBLE64<input type="text" name='pressure'>
+                </li>
+                <li class='li fl'>
+                    skyGatherTime:UINT32<input type="text" name='skyGatherTime'>
+                </li>
+                <li class='li fl'>
+                    skyState:UINT16<input type="text" name='skyState'>
+                </li>
+                <li class='li fl'>
+                    clouds:UINT16<input type="text" name='clouds'>
+                </li>
+                <li class='li fl'>
+                    seeingGatherTime:UINT32<input type="text" name='seeingGatherTime'>
+                </li>
+                <li class='li fl'>
+                    seeing:DOUBLE64<input type="text" name='seeing'>
+                </li>
+                <li class='li fl'>
+                    dustGatherTime:UINT32<input type="text" name='dustGatherTime'>
+                </li>
+                <li class='li fl'>
+                    dust:DOUBLE64<input type="text" name='dust'>
+                </li>
+                <li class='li fl'>
+                    AMS:DOUBLE64<input type="text" name='AMS'>
+                </li>
+                <li class='li fl'>
+                    extinctionGatherTime:UINT32<input type="text" name='extinctionGatherTime'>
+                </li>
+                <li class='li fl'>
+                    rightAscension:DOUBLE64<input type="text" name='rightAscension'>
+                </li>
+                <li class='li fl'>
+                    declination:DOUBLE64<input type="text" name='declination'>
+                </li>
+                <li class='li fl'>
+                    band:UINT8<input type="text" name='band'>
+                </li>
+                <li class='li fl'>
+                    extinctionFactor1:DOUBLE64<input type="text" name='extinctionFactor1'>
+                </li>
+                <li class='li fl'>
+                    extinctionFactor2:DOUBLE64<input type="text" name='extinctionFactor2'>
+                </li>
+                <li class='li fl'>
+                    extinctionFactor3:DOUBLE64<input type="text" name='extinctionFactor3'>
+                </li>
+                <li class='li fl'>
+                    telescopeRightAscension:DOUBLE64 <input type="text" name='telescopeRightAscension'>
+                </li>
+                <li class='li fl'>
+                    telescopeDeclination:DOUBLE64<input type="text" name='telescopeDeclination'>
+                </li>
+                <li class='li fl'>
+                    focusLength:DOUBLE64<input type="text" name='focusLength'>
+                </li>
+                <li class='li fl'>
+                    frameNum:UINT32 <input type="text" name='frameNum'>
+                </li>
+                <p style='color:red;' class='clear'><input id='dev1_submit' type="button" value='提交测试数据'></p>
+            </form>
+        </ul>
+    </div>
+    <!--ccd状态及操作-->
+    <div id='ccdInfo' class='devInfo border clear displayNo'>
+        <span style='color:red'>固定属性：</span>
+        <ul>
+            <li class='li fl'>
+                隶属望远镜:12.12.12.12
+            </li>
+            <li class='li fl'>
+                探测器类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                x像素:12.12.12.12
+            </li>
+            <li class='li fl'>
+                y像素:12.12.12.12
+            </li>
+            <li class='li fl'>
+                x像元大小:12.12.12.12
+            </li>
+            <li class='li fl'>
+                y像元大小:12.12.12.12
+            </li>
+            <li class='li fl'>
+                传感器名称:12.12.12.12
+            </li>
+            <li class='li fl'>
+                图像位数:12.12.12.12
+            </li>
+            <li class='li fl'>
+                制冷方式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最低制冷温度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最大曝光时间:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最小曝光时间:12.12.12.12
+            </li>
+            <li class='li fl'>
+                曝光时间分辨率:12.12.12.12
+            </li>
+            <li class='li fl'>
+                满阱电荷:12.12.12.12
+            </li>
+            <li class='li fl'>
+                读出模式 5:12.12.12.12
+            </li>
+            <li class='li fl'>
+                读出速度模式 4:12.12.12.12
+            </li>
+            <li class='li fl'>
+                转移速度模式 4:12.12.12.12
+            </li>
+            <li class='li fl'>
+                增益模式2:12.12.12.12
+            </li>
+            <li class='li fl'>
+                增益档位4:12.12.12.12
+            </li>
+            <li class='li fl'>
+                增益值 （5-1）*4*4*2*4:12.12.12.12
+            </li>
+            <li class='li fl'>
+                读出噪声值 4*4*2*4:12.12.12.12
+            </li>
+            <li class='li fl'>
+                快门类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                快门模式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持帧转移:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持EM:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持CMOS noise filter:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持 base line:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持Over scan:12.12.12.12
+            </li>
+            <li class='li fl'>
+                BIN:12.12.12.12
+            </li>
+            <li class='li fl'>
+                是否支持开窗:12.12.12.12
+            </li>
+            <li class='li fl'>
+                接口类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                曝光触发模式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最大EM:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最小EM:12.12.12.12
+            </li>
+            <li class='li fl'>
+                连接:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置制冷温度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置曝光策略:12.12.12.12
+            </li>
+            <li class='li fl'>
+                开始曝光:12.12.12.12
+            </li>
+            <li class='li fl'>
+                停止曝光:12.12.12.12
+            </li>
+            <li class='li fl'>
+                终止曝光:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置增益:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置读出速度模式值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置转移速度模式值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置BIN:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置ROI:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置快门:12.12.12.12
+            </li>
+            <li class='li fl'>
+                设置帧转移:12.12.12.12
+            </li>
+            <li class='li fl'>
+                set EM:12.12.12.12
+            </li>
+            <li class='li fl'>
+                set CMOS noise filter:12.12.12.12
+            </li>
+            <li class='li fl'>
+                set base line:12.12.12.12
+            </li>
+            <li class='li fl'>
+                set over scan:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>可变属性：</p>
+            <li class='li fl'>
+                时间戳:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前拍摄目标名称:12.12.12.12
+            </li>
+             <li class='li fl'>
+                当前拍摄目标类型:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前拍摄目标赤经:12.12.12.12
+            </li>
+             <li class='li fl'>
+                当前拍摄目标赤纬:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前拍摄目标历元:12.12.12.12
+            </li>
+             <li class='li fl'>
+                当前拍摄波段:12.12.12.12
+            </li>
+            <li class='li fl'>
+                BinX:12.12.12.12
+            </li>
+             <li class='li fl'>
+                BinY:12.12.12.12
+            </li>
+            <li class='li fl'>
+                startX:12.12.12.12
+             <li class='li fl'>
+                startY:12.12.12.12
+            </li>
+            <li class='li fl'>
+                图像宽度:12.12.12.12
+            </li>
+             <li class='li fl'>
+                图像高度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                曝光时间:12.12.12.12
+            </li>
+             <li class='li fl'>
+                延迟时间:12.12.12.12
+            </li>
+             <li class='li fl'>
+                帧序号:12.12.12.12
+            </li>
+             <li class='li fl'>
+                总拍摄帧数:12.12.12.12
+            </li>
+            <li class='li fl'>
+                读出速度模式索引:12.12.12.12
+            </li>
+             <li class='li fl'>
+                转移速度模式索引:12.12.12.12
+            </li>
+            <li class='li fl'>
+                增益模式索引:12.12.12.12
+            </li>
+             <li class='li fl'>
+                增益档位索引:12.12.12.12
+            </li>
+            <li class='li fl'>
+                当前制冷温度:12.12.12.12
+            </li>
+            <li class='li fl'>
+                制冷温度设置值:12.12.12.12
+            </li>
+             <li class='li fl'>
+                上次曝光名称:12.12.12.12
+            </li>
+            <li class='li fl'>
+                上次曝光开始时刻:12.12.12.12
+            </li>
+             <li class='li fl'>
+                上次曝光时间:12.12.12.12
+            </li>
+            <li class='li fl'>
+                读出模式:12.12.12.12
+            </li>
+            <li class='li fl'>
+                图像存储位数值:12.12.12.12
+            </li>
+             <li class='li fl'>
+                曝光完成百分比:12.12.12.12
+            </li>
+            <li class='li fl'>
+                曝光触发模式值（索引）:12.12.12.12
+            </li>
+             <li class='li fl'>
+                风扇状态（索引）:12.12.12.12
+            </li>
+              <li class='li fl'>
+                快门模式值（索引）:12.12.12.12
+            </li>
+            <li class='li fl'>
+                帧转移:12.12.12.12
+            </li>
+             <li class='li fl'>
+                EM:12.12.12.12
+            </li>
+            <li class='li fl'>
+                EM值:12.12.12.12
+            </li>
+            <li class='li fl'>
+                CMOS noise filter:12.12.12.12
+            </li>
+             <li class='li fl'>
+                base line:12.12.12.12
+            </li>
+            <li class='li fl'>
+                Base line值:12.12.12.12
+            </li>
+             <li class='li fl'>
+                像元比例尺X:12.12.12.12
+            </li>
+             <li class='li fl'>
+                像元比例尺Y:12.12.12.12
+            </li>
+
+            <p style='color:red;' class='clear'>当前状态：</p>
+            <li class='li fl'>
+                连接中:12.12.12.12
+            </li>
+             <p style='color:red;' class='clear'>历史状态：</p>
+            <li class='li fl'>
+                恒速跟踪:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>错误标识：</p>
+            <li class='li fl'>
+                正常:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>警告状态：</p>
+            <li class='li fl'>
+                伺服通信失败异常:12.12.12.12
+            </li>
+            <p style='color:red;' class='clear'>错误状态：</p>
+            <li class='li fl'>
+                伺服通信失败异常:12.12.12.12
+            </li>
+            <hr class='clear' />
+            <p style='color:red;' class='clear'>操作区：</p>
+            <li class='li fl'>
+                连接:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置制冷温度:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置曝光策略:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                开始曝光:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                停止曝光:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                终止曝光:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置增益:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置读出速度模式值:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置转移速度模式值:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置BIN:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置ROI:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置快门:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置帧转移:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                set EM:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                set CMOS noise filter:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                set base line:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                set over scan:<input type="text" value='234'>
+            </li>
+        </ul>
+    </div>
+    <!--调焦器状态及操作-->
+    <div id='focusInfo' class='devInfo border clear displayNo'>
+       <span style='color:red'>固定属性：</span>
+        <ul>
+            <li class='li fl'>
+                所属望远镜:12.12.12.12
+            </li>
+            <li class='li fl'>
+                最大值:33.33.33.32
+            </li>
+            <li class='li fl'>
+                最小值:33.33.33.32
+            </li>
+            <li class='li fl'>
+                分辨率:33.33.33.32
+            </li>
+            <li class='li fl'>
+                是否可找零:33.33.33.32
+            </li>
+            <li class='li fl'>
+                是否可进行温度补偿:33.33.33.32
+            </li>
+            <li class='li fl'>
+                最大速度:33.33.33.32
+            </li>
+            <li class='li fl'>
+                连接:33.33.33.32
+            </li>
+            <li class='li fl'>
+                设置目标位置:33.33.33.32
+            </li>
+            <li class='li fl'>
+                设置恒速运动:33.33.33.32
+            </li>
+            <li class='li fl'>
+                停止运动:33.33.33.32
+            </li>
+            <li class='li fl'>
+                使能温度补偿:33.33.33.32
+            </li>
+            <li class='li fl'>
+                设置温度补偿系数:33.33.33.32
+            </li>
+            <li class='li fl'>
+                找零:33.33.33.32
+            </li>
+            
+            <p style='color:red;' class='clear'>可变属性：</p>
+            <li class='li fl'>
+                时间戳:33.33.33.32
+            </li>
+            <li class='li fl'>
+                当前位置:33.33.33.32
+            </li>
+             <li class='li fl'>
+                目标位置:33.33.33.32
+            </li>
+            <li class='li fl'>
+                找零状态:33.33.33.32
+            </li>
+             <li class='li fl'>
+                当前环境温度:33.33.33.32
+            </li>
+            <li class='li fl'>
+                是否进行温度补偿:33.33.33.32
+            </li>
+             <li class='li fl'>
+                温度补偿系数:33.33.33.32
+            </li>
+            
+            <p style='color:red;' class='clear'>当前状态：</p>
+            <li class='li fl'>
+                连接中:33.33.33.32
+            </li>
+             
+            <p style='color:red;' class='clear'>错误标识：</p>
+            <li class='li fl'>
+                正常:33.33.33.32
+            </li>
+            
+            <p style='color:red;' class='clear'>错误状态：</p>
+            <li class='li fl'>
+                待定义:33.33.33.32
+            </li>
+            <hr class='clear' />
+            <p style='color:red;' class='clear'>操作区：</p>
+            <li class='li fl'>
+                连接:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置目标位置:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置恒速运动:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                停止运动:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                停止曝光:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                使能温度补偿:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置温度补偿系数:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                找零:<input type="text" value='234'>
+            </li>
+        </ul>
+    </div>
+    <!--圆顶状态及操作-->
+    <div id='domeInfo' class='devInfo border clear displayNo'>
+         <span style='color:red'>固定属性：</span>
+        <ul>
+            <li class='li fl'>
+                所属望远镜:123.32.26.22
+            </li>
+            <li class='li fl'>
+                类型:123.32.26.22
+            </li>
+            <li class='li fl'>
+                是否具备风帘:123.32.26.22
+            </li>
+            <li class='li fl'>
+                最大转动速度:123.32.26.22
+            </li>
+            <li class='li fl'>
+                大小:123.32.26.22
+            </li>
+            <li class='li fl'>
+                设置目标方位:123.32.26.22
+            </li>
+            <li class='li fl'>
+                设置风帘位置:123.32.26.22
+            </li>
+            <li class='li fl'>
+                设置转动速度:123.32.26.22
+            </li>
+            <li class='li fl'>
+                停止运动:123.32.26.22
+            <li class='li fl'>
+                打开天窗:123.32.26.22
+            </li>
+            <li class='li fl'>
+                控制风帘运动:123.32.26.22
+            </li>
+            <li class='li fl'>
+                连接:123.32.26.22
+            </li>
+
+            <p style='color:red;' class='clear'>可变属性：</p>
+            <li class='li fl'>
+                天窗状态:123.32.26.22
+            </li>
+            <li class='li fl'>
+                风帘状态:123.32.26.22
+            </li>
+             <li class='li fl'>
+                当前方位:123.32.26.22
+            </li>
+            <li class='li fl'>
+                天窗打开百分比:123.32.26.22
+            </li>
+             <li class='li fl'>
+                风帘位置:123.32.26.22
+            </li>
+            <li class='li fl'>
+                目标方位:123.32.26.22
+            </li>
+             <li class='li fl'>
+                目标天窗状态:123.32.26.22
+            </li>
+            <li class='li fl'>
+                目标风帘位置:123.32.26.22
+            </li>
+             
+
+            <p style='color:red;' class='clear'>当前状态：</p>
+            <li class='li fl'>
+                连接中:123.32.26.22
+            </li>
+            <p style='color:red;' class='clear'>错误标识：</p>
+            <li class='li fl'>
+                正常:123.32.26.22
+            </li>
+            
+            <p style='color:red;' class='clear'>错误类型：</p>
+            <li class='li fl'>
+                待定义：123.32.26.22
+            </li>
+            <hr class='clear' />
+            <p style='color:red;' class='clear'>操作区：</p>
+            <li class='li fl'>
+                连接:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置目标方位:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置风帘位置:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                设置转动速度:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                停止运动:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                打开天窗:<input type="text" value='234'>
+            </li>
+            <li class='li fl'>
+                控制风帘运动:<input type="text" value='234'>
+            </li>
+            
+        </ul>
+    </div>
+    {load href='/static/js/dev1.js'}
+</body>
+</html>

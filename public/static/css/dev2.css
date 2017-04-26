@@ -1,0 +1,9 @@
+/* 
+* 设备样式
+*/
+
+#devs {margin-top: 6px;}
+#devs div {width:310px;margin:3px;}
+
+#devs .selected {color:red;}
+
