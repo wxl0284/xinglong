@@ -10,6 +10,15 @@ use think\Controller;
 
 class Page extends Controller
 {
+    public function _initialize ()
+    {
+        //未登录
+            if (Session::get('login') === null)
+            {
+                $this->error('请完成注册/登录后，再进行相关操作！', 'index/index');
+            } 
+    }
+    
     //页面1 1米望远镜
     public function dev_1 ()
     {

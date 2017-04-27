@@ -128,8 +128,8 @@
            <!--转台开始-->
            <div id='gimbalInfo' class='border clear display'>
                <div>
+                  <p style='color:green;'>固定属性：</p>
                    <ul>
-                    <p style='color:green;'>固定属性：</p>
                         <li class='li fl'>经度:12.12.12.12 </li>
                         <li class='li fl'>  纬度:12.12.12.12 </li>
                         <li class='li fl'>  口径:12.12.12.12 </li>
@@ -172,8 +172,8 @@
                    <hr class="clear" />
                </div>
                 <div>
+                  <p style='color:green;'>可变属性：</p>
                     <ul>
-                        <p style='color:green;'>可变属性：</p>
                         <li class='li fl'> 时间戳:12.12.12.12  </li>
                         <li class='li fl'>  当前恒星时:12.12.12.12  </li>
                         <li class='li fl'>  当前时角:12.12.12.12  </li>
@@ -228,12 +228,15 @@
                     </ul>
                    <hr class="clear" />
                </div>
+                <!--权限判断-->
+                {if condition="session('role') !== 3"} 
                 <div>
                    <ul>
                        <p style='color:green;'> 操作：</p>
-                     <form id='xxx'>
+                     <form id='gimbalCtrl'>
                          <li class='li fl'> <input type="radio" name='command' value='1'>
-                         连接:<input type="text" class='command' name='command1' />
+                         连接:<input type="text" class='command' name='command_double64' />
+                         <!--此处double64表示数据类型，验证方便-->
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' value='2'> 
                         找零:<input type="text" class='command' name='command2' />
@@ -284,20 +287,106 @@
                         <li class='li fl'> <input type="radio" name='command' value='17' />
                         属性设置:<input type="text" class='command' name='command17' />
                         </li>
+                        <div class="clear"><input type="button" id="gimbalCtrlBtn" value="提交操作指令"></div>
                      </form>
                    </ul>
-                   <div class="clear"><input type="button" id="bbbb" value="提交操作指令"></div>
+                   <!--js提交操作指令-->
+                   
                    <script type="text/javascript">
                        $(function () {
-                          $("#bbbb").click(function (){
-                                var a = $('#xxx').find("input:checked + input").val();
-                            alert(a);
+                         //单选按钮选中时：其余输入框变暗灰色
+                         // var radio = $('#gimbalCtrl').find('input:radio');
+
+                         //    radio.click(function () {
+                         //        var  notcheck = radio.not($('input:radio:checked')).parent('li');
+                                    
+                         //            notcheck.addClass('notCheck');
+                         //            notcheck.find('input[type="text"]').val('');
+                         //            $(this).parent('li').removeClass('notCheck');
+                         //    });
+                         var form = $('#gimbalCtrl');
+                         var select = form.find('li');
+
+                         select.click(function () {
+                             $(this).find('input:radio').attr('checked', true);
+                             var notcheck = form.find('input:radio:not([checked])').parent('li');
+                             notcheck.addClass('notCheck');
+                             notcheck.find('input[type="text"]').val('');
+                             $(this).removeClass('notCheck');
+                             
+                         });
+
+                        //按钮提交事件
+                          $("#gimbalCtrlBtn").click(function (){
+                                
+                                var checkInput = form.find("input:checked + input");
+                                var val  = checkInput.val();
+                                var dataName = checkInput.attr('name');
+                                var pos = indexOf('_') + 1;
+                                var dataType = checkInput.attr('name').substr(pos);
+                                
+                                //执行数据验证
+                                 var uInt8 = new RegExp("^[a-zA-Z0-9-_]{1,24}$");      //1-24字符；
+                                 var db64 = new RegExp("^(-?\\d+)(\\.\\d+)?$");     //浮点数
+                                 var isInt = new RegExp("^-?\\d+$");                    //整数
+
+                                switch (dataType)
+                                {
+                                    case 'double64':
+                                    if (!val.match())
+                                    {
+                                        alert('输入数据格式错误！');
+                                        return;
+                                    }
+
+                                    case 'uInt8':
+                                    if (!val.match())
+                                    {
+                                        alert('输入数据格式错误！');
+                                        return;
+                                    }
+
+                                    case 'isInt':
+                                    if (!val.match())
+                                    {
+                                        alert('输入数据格式错误！');
+                                        return;
+                                    }
+
+                                    default :
+                                    alert('输入数据格式错误！');
+                                    return;
+                                }  
+
+                                //执行ajax
+                                $.ajax ({
+                                       type: 'post',
+                                       url : '/index/index/doLogin',
+                                       data:  {
+                                              dataName : val,
+                                           },    
+                                       
+                                       success:  function (info) {
+                                        alert(info);
+                                        
+                                         if (info.indexOf('注册成功') != -1)
+                                         {
+                                              //window.location.href = '/index';
+                                         }
+                                      },
+
+                                     error:  function () {
+                                        alert('网络异常,请重新提交');
+                                     },
+                                   });
+
                           });
                            
-
+                         
                        })
                    </script>
                </div>
+            {/if}
            </div>
            <!--ccd开始-->
            <div id='ccdInfo' class='border clear displayNo'>
@@ -406,25 +495,66 @@
                 <div>
                    <p style='color:green'>操作：</p>
                     <ul>
-                        <li class='li fl'> 连接:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置制冷温度:<input type="text" value='234'> </li>
-                        <li class='li fl'>   设置曝光策略:<input type="text" value='234'> </li>
-                        <li class='li fl'>   开始曝光:<input type="text" value='234'> </li>
-                        <li class='li fl'>  停止曝光:<input type="text" value='234'> </li>
-                        <li class='li fl'>  终止曝光:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置增益:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置读出速度模式值:<input type="text" value='234'>  </li>
-                        <li class='li fl'>  设置转移速度模式值:<input type="text" value='234'>  </li>
-                        <li class='li fl'> 设置BIN:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置ROI:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置快门:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置帧转移:<input type="text" value='234'> </li>
-                        <li class='li fl'>   set EM:<input type="text" value='234'> </li>
-                        <li class='li fl'>   set CMOS noise filter:<input type="text" value='234'> </li>
-                        <li class='li fl'>   set base line:<input type="text" value='234'> </li>
-                        <li class='li fl'>   set over scan:<input type="text" value='234'> </li>
+                      <form id='ccdCtrl'> 
+                        
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='1' />
+                        连接: <input type="text" class='command' name='ccdCmd1' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='2' /> 
+                        设置制冷温度:<input type="text" class='command' name='ccdCmd2' />
+                        </li>
+                        <li class='li fl'>   <input type="radio" name='ccdCmd' value='3' />
+                            设置曝光策略:<input type="text" class='command' name='ccdCmd3' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='4' /> 
+                        开始曝光:<input type="text" class='command' name='ccdCmd4' />
+                        </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='5' /> 
+                         停止曝光:<input type="text" class='command' name='ccdCmd5' />
+                          </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='6' /> 
+                        终止曝光:<input type="text" class='command' name='ccdCmd6' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='7' /> 
+                        设置增益:<input type="text" class='command' name='ccdCmd7' />
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='8' /> 
+                        设置读出速度模式值:<input type="text" class='command' name='ccdCmd8' />
+                          </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='9' /> 
+                        设置转移速度模式值:<input type="text" class='command' name='ccdCmd9' />
+                          </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='10' /> 
+                        设置BIN:<input type="text" class='command' name='ccdCmd10' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='11' /> 
+                        设置ROI: <input type="text" class='command' name='ccdCmd11' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='12' /> 
+                        设置快门: <input type="text" class='command' name='ccdCmd12' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='ccdCmd' value='13' /> 
+                        设置帧转移: <input type="text" class='command' name='ccdCmd13' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='14' /> 
+                         set EM: <input type="text" class='command' name='ccdCmd14' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='15' /> 
+                        set CMOS noise filter: <input type="text" class='command' name='ccdCmd15' />
+                         </li>
+                        <li class='li fl'>   <input type="radio" name='ccdCmd' value='16' /> 
+                        set base line: <input type="text" class='command' name='ccdCmd16' />
+                         </li>
+                        <li class='li fl'>  <input type="radio" name='ccdCmd' value='17' /> 
+                         set over scan:<input type="text" class='command' name='ccdCmd17' />
+                          </li>
+                          <!--清空浮动-->
+                        <div class="clear">
+                            <input type="button" id="ccdCtrlBtn" value="提交操作指令">
+                        </div>
+                      </form>
                     </ul>
-                    <!--清空浮动--><div class='clear'></div>
+                    
                </div>
            </div>
            <!--调焦器开始-->
@@ -464,17 +594,41 @@
                </div>
                 <div>
                    <p style='color:green'>操作：</p>
-                    <ul>
-                        <li class='li fl'> 连接:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置目标位置:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置恒速运动:<input type="text" value='234'>  </li>
-                        <li class='li fl'>  停止运动:<input type="text" value='234'></li>
-                        <li class='li fl'>   停止曝光:<input type="text" value='234'> </li>
-                        <li class='li fl'>    使能温度补偿:<input type="text" value='234'> </li>
-                        <li class='li fl'>  设置温度补偿系数:<input type="text" value='234'> </li>
-                        <li class='li fl'>  找零:<input type="text" value='234'> </li>
+                    <ul> 
+                      <form id='focusCtrl'>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='1' />
+                        连接: <input type="text" class='command' name='focusCmd1' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='2' />
+                        设置目标位置: <input type="text" class='command' name='focusCmd2' />
+                        </li>
+                        <li class='li fl'>  <input type="radio" name='focusCmd' value='3' />
+                        设置恒速运动: <input type="text" class='command' name='focusCmd3' />
+                        </li>
+                         </li>
+                        <li class='li fl'><input type="radio" name='focusCmd' value='4' />
+                         停止运动: <input type="text" class='command' name='focusCmd4' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='5' />
+                        停止曝光:  <input type="text" class='command' name='focusCmd5' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='6' />
+                         使能温度补偿:  <input type="text" class='command' name='focusCmd6' />
+                          </li>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='7' />
+                        设置温度补偿系数: <input type="text" class='command' name='focusCmd7' />
+                        </li>
+                        <li class='li fl'> <input type="radio" name='focusCmd' value='8' />
+                        找零: <input type="text" class='command' name='focusCmd8' />
+                         </li>
+
+                         <!--清空浮动-->
+                        <div class="clear">
+                            <input type="button" id="focusCtrlBtn" value="提交操作指令">
+                        </div>
+                      </form>
                     </ul>
-                    <!--清空浮动--><div class='clear'></div>
+                    
                </div>
            </div>
            <!--滤光片开始-->
@@ -505,11 +659,22 @@
                 <div>
                    <p style='color:green'>操作：</p>
                     <ul>
-                        <li class='li fl'> 连接:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置滤光片位置:<input type="text" value='234'> </li>
-                        <li class='li fl'>  找零:<input type="text" value='234'>  </li>
-                    </ul>
-                   <!--清空浮动--><div class='clear'></div>
+                      <form id='filterCtrl'>
+                        <li class='li fl'> <input type="radio" name='filterCmd' value='1' />
+                        连接: <input type="text" class='command' name='filterCmd1' />
+                         </li>
+                        <li class='li fl'><input type="radio" name='filterCmd' value='2' />
+                        设置滤光片位置: <input type="text" class='command' name='filterCmd2' />
+                         </li>
+                        <li class='li fl'> <input type="radio" name='filterCmd' value='3' /> 
+                         找零: <input type="text" class='command' name='filterCmd3' />
+                          </li>
+                        <!--清空浮动-->
+                        <div class="clear">
+                        <input type="button" id="filterCtrlBtn" value="提交操作指令">
+                        </div>
+                     </form>
+                    </ul>                   
                </div>
            </div>
            <!--圆顶开始-->
@@ -547,20 +712,40 @@
                    <hr class="clear" />
                </div>
                 <div>
+                  <p style='color:green;' class='clear'>操作区：</p>
                    <ul>
-                       <p style='color:green;' class='clear'>操作区：</p>
-                        <li class='li fl'>  连接:<input type="text" value='234'></li>
-                        <li class='li fl'>   设置目标方位:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置风帘位置:<input type="text" value='234'> </li>
-                        <li class='li fl'> 设置转动速度:<input type="text" value='234'> </li>
-                        <li class='li fl'> 停止运动:<input type="text" value='234'>  </li>
-                        <li class='li fl'>  打开天窗:<input type="text" value='234'> </li>
-                        <li class='li fl'>  控制风帘运动:<input type="text" value='234'> </li>
+                        <form id='domeCtrl'> 
+                            <li class='li fl'>  <input type="radio" name='domeCmd' value='1' />
+                            连接: <input type="text" class='command' name='domeCmd1' />
+                            </li>
+                            <li class='li fl'> <input type="radio" name='domeCmd' value='2' />
+                            设置目标方位: <input type="text" class='command' name='domeCmd2' />
+                            </li>
+                            <li class='li fl'> <input type="radio" name='domeCmd' value='3' />
+                            设置风帘位置: <input type="text" class='command' name='domeCmd3' />
+                            </li>
+                            <li class='li fl'> <input type="radio" name='domeCmd' value='4' />
+                            设置转动速度: <input type="text" class='command' name='domeCmd4' />
+                             </li>
+                            <li class='li fl'> <input type="radio" name='domeCmd' value='5' />
+                            停止运动: <input type="text" class='command' name='domeCmd5' />
+                             </li>
+                            <li class='li fl'>  <input type="radio" name='domeCmd' value='6' />
+                            打开天窗: <input type="text" class='command' name='domeCmd6' />
+                            </li>
+                            <li class='li fl'>  <input type="radio" name='domeCmd' value='7' />
+                            控制风帘运动: <input type="text" class='command' name='domeCmd7' />
+                             </li>
+                            <!--清空浮动-->
+                            <div class="clear">
+                               <input type="button" id="domeCtrlBtn" value="提交操作指令">
+                            </div>
+                      </form>
                    </ul>
-                   <!--清空浮动--><div class='clear'></div>
                </div>
            </div>
         </div>
         {load href='/static/js/dev1_1.js'}
+        <!-- <div style='width:800px;height:800px;'><img src="ftp://192.168.2.105/" alt='测试图片'/> </div> -->
     </body>
 </html>

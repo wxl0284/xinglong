@@ -69,17 +69,18 @@ class Index extends Controller
 
         if (!$userData) //用户名不存在
         {
-            $this->error('用户名错误', 'index/index');
+            $this->error('用户名错误');
         }
 
         //判断密码
         if(md5($password) != $userData['password'])
         {
-            $this->error('密码错误！', 'index/index');
+            $this->error('密码错误！');
         }
 
         //登录成功，写入session, 跳转至主页面
         Session::set('login', $userData['username']);
+        Session::set('role', $userData['role']);
         
         $this->redirect('/index/front');
     }

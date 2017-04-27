@@ -29,7 +29,8 @@ class Front extends Controller
 			//显示设备1页面
 		public function dev1()
 		{	
-			return $this->fetch('dev1');
+			//return $this->fetch('dev1');
+			$this->redirect('index/page/dev_1_1');
 
 		}
 
