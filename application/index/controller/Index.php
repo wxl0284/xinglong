@@ -81,7 +81,11 @@ class Index extends Controller
         //登录成功，写入session, 跳转至主页面
         Session::set('login', $userData['username']);
         Session::set('role', $userData['role']);
-        
+        //session中已有之前的url,则跳转回此url
+        if (Session::has('url'))
+        {
+            $this->redirect(Session::get('url'));
+        }
         $this->redirect('/index/front');
     }
 

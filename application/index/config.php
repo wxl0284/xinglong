@@ -29,7 +29,7 @@ return [
 
         // 数据库密码
         //'password'        => '123456', 
-        'password'        => '',        
+        'password'        => '123456',        
 
 
 

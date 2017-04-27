@@ -40,6 +40,8 @@ class Page extends Controller
     //测试弹框插件
     public function dialog ()
     {
+
+        echo $uri = $_SERVER['PHP_SELF'] .'?'. $_SERVER['QUERY_STRING'];return;
         return view('dialog');
     }
 }

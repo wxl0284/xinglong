@@ -11,7 +11,7 @@ class Front extends Controller
 		public function _initialize ()
 		{
 			//未登录
-			if (Session::get('login') === null)
+			if (!Session::has('login'))
 			{
 				$this->error('请完成注册/登录后，再进行相关操作！', 'index/index');
 			}   
