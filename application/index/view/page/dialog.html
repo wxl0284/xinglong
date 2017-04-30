@@ -3,26 +3,57 @@
     <head>
         <meta charset="utf-8">
         <style>
-          #box {width:300px;height:105px;display:none;}
+          #box {display:none;           
+          }
+          #box form {margin-top:25px; margin-left:136px; }
         </style>
+        {load href='/static/js/jquery-1.8.3.min.js'}
+        {load href='/static/layer/layer.js'}
     </head>
     <body>
         <div id="box" style="">
-            <form action="/index/front/upload" enctype="multipart/form-data" method="post">
-            <input type="file" name="file" /> <br>
-            <input type="submit" value="上传" />
+            <form enctype="multipart/form-data">
+            <input type="file" name="file" />
            </form>
         </div>
        <p>弹一个</p>
-       {load href='/static/js/jquery-1.8.3.min.js'}
-       {load href='/static/js/easydialog.min.js'}
+       <!--layer弹窗 OK-->
+      
       <script>
           $(function () {
-             $('p').click(function () {
-                easyDialog.open({
-                    container : 'box',
+            $('p').click(function () {
+                layer.open ({
+                  type : 1,
+                  title : '上传观测任务',
+                  area : ['400px', '160px'],
+                  skin : 'layui-layer-molv',
+                  shade : 0,
+                  moveType : 0,
+                  shift : -1,
+                  content : $('#box'),
+                  btn : ['上传', '取消'],
+                  yes : function (index, layero) {
+                    var formData = new FormData($('#box form')[0]);
+                    $.ajax({
+                         url: '/index/front/upload',
+                         type: 'POST',
+                         cache: false,
+                         data: formData,
+                         processData: false,
+                         contentType: false,
+                         success: function (a) {
+                            layer.close(index);
+                             layer.msg(a);
+                         },
+                         error : function (b) {
+
+                         },
+                         
+                    }); 
+                  },
+                  
                 });
-             });
+            });             
           })
       </script>
     </body>

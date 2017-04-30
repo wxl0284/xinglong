@@ -74,21 +74,20 @@ class Front extends Controller
 	    //文件上传
 		public function upload ()
 		{
-			// 获取表单上传文件 例如上传了001.jpg
+			// 获取表单上传文件 
 			$file = request()->file('file');
 			// 移动到框架应用根目录/public/uploads/ 目录下
-			$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+			$dir = date('Y/m/d', time());
+			$dir = str_replace('/', '', $dir);
+			$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/'.$dir,'');
 			if($info){
 				// 成功上传后 获取上传信息
-				//echo $info->getExtension();		// 输出 txt
+				echo '文件上传成功！';
+				// $dir = substr($info->getSaveName(), 0, 8);
+				// $oldname = ROOT_PATH . 'public' . DS . 'uploads'.str_replace('\\', '/', $info->getSaveName());
+				//  $newname = ROOT_PATH . 'public' . DS . 'uploads/'. $dir.'/abc.txt';
 				
-				//echo $info->getSaveName();		// 输出 20160820/42a79759f284b767dfcb2a0197904287.txt
-				//$dir = substr($info->getSaveName(), 0, 8);
-				//echo $info->getFilename(); 		// 输出 42a79759f284b767dfcb2a0197904287.txt
-				// $oldname = '/uploads/'.$info->getSaveName();
-				// $oldname = str_replace('\\', '/', $oldname);
-				// $newname = '/uploads/'.$dir.'/abc.txt';
-				// rename($oldname, $newname);
+				 //rename($oldname, $newname);
 			}else{// 上传失败获取错误信息
 				echo $file->getError();
 			}			 

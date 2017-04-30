@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {load href='/static/js/jquery-1.8.3.min.js'}
+        {load href='/static/layer/layer.js'}
+    </head>
+    <body>
+        <div id="box" style="">
+            <form>
+            <input type="text" name="user" />
+            <input type="text" name="pass" />
+           </form>
+        </div>
+       <p>提交表单</p>
+       <!--layer弹窗 OK-->
+      
+      <script>
+          $(function () {
+              
+              $('p').click(function () {
+                var form = $('#box form');
+                var formData = new FormData(form[0]);
+
+                    $.ajax({
+                      url : '/index/page/test',
+                      type : 'post',
+                      data : formData,
+                      processData : false,
+                      contentType : false,
+                      success : function (info) {
+                        alert(info);
+                      },
+                  });
+              });
+            
+          })
+      </script>
+    </body>
+</html>
