@@ -3,9 +3,12 @@
     <head>
         <meta charset="utf-8">
         <style>
-          #box {display:none;           
+          #box {display:none;        
           }
           #box form {margin-top:25px; margin-left:136px; }
+          #box1 {width:300px;height:100px;border:1px solid red;
+            display: none;
+          }
         </style>
         {load href='/static/js/jquery-1.8.3.min.js'}
         {load href='/static/layer/layer.js'}
@@ -16,11 +19,16 @@
             <input type="file" name="file" />
            </form>
         </div>
+        <div id="box1">
+           <p>阿三地方</p>
+           <p>士大夫个</p>
+        </div>
        <p>弹一个</p>
        <!--layer弹窗 OK-->
       
       <script>
           $(function () {
+            /*此注释内容为上传文件弹窗代码（ok,运行正常）
             $('p').click(function () {
                 layer.open ({
                   type : 1,
@@ -53,8 +61,13 @@
                   },
                   
                 });
-            });             
-          })
-      </script>
+            }); */  
+
+            //此为试验layer其他效果
+  $('p').click(function () {
+        layer.msg('不开心。。。', {icon: 1});        
+   });          
+})
+</script>
     </body>
 </html>
