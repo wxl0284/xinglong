@@ -7,176 +7,323 @@ namespace app\index\controller;
 use think\Db;
 use think\Session;
 use think\Controller;
+use think\Request;
+include_once (APP_PATH . 'common.php');     //引入公共函数文件
 
 class Dev1 extends Controller
 {
-    //显示主页
+    //发送数据
     public function sendData()
     {
-        if (Session::get('login') !== null)
-        { 
-            //已登录，可以执行操作
-             $sendMsg = '';  //要发送的数据
-             // $validFlag = trim($_POST['validFlag']);
-             // $sendMsg .= pack('l', $validFlag);   //UINT16 n:无符号16整数
+        //定义全局$sequence 此变量在packHead()函数中要使用
+        $sequence = 0;
 
-             // $startTime =  trim($_POST['startTime']);
-             // $sendMsg = pack('L', $startTime);      //UINT32
-             
-             // $duration = trim($_POST['duration']);
-             // $sendMsg .= pack('d', $duration);      //DOUBLE64
+        if (!Request::instance()->post())
+        {
+            echo '网络异常，请重新提交指令！';
+            return;
+        }
+        //dump(Request::instance()->post());return;
+        //获取ajax提交的数据
+        $at     = trim(Request::instance()->post('at'));                     //望远镜
+        $device = trim(Request::instance()->post('device'));                   //望远镜子设备
+        $operation = trim(Request::instance()->post('operation'));             //操作指令标识
+        //进行头部信息的打包
+        $headInfo = packHead($at, $device, $sequence, $operation);
 
-                $delay = trim($_POST['delay']);
-               // $delay = $delay + 0;
-                echo $delay;
-                $sendMsg .= pack('l', $delay);      //DOUBLE64
-            
-                 // $objectName =  trim($_POST['objectName']);
-                 // $sendMsg .= pack('A24', $objectName);      //UINT8 C:无符号8位整数
+        // $postData = trim(Request::instance()->post('validFlag'));          //提交来的指令数据
+        // $type     = trim(Request::instance()->post('type'));
 
-            //  $objectType = trim($_POST['objectType']);
-            //  $sendMsg .= pack('l', $objectType);      //UINT16 n:无符号16整数
+        //$packData = packData($postData, $type);         //将提交的指令pack
+        //dump($packData); return;
+        //下面是逐个打包每个指令, 占位
+      /*   if (input('?post.validFlag'))  
+        {
+            $validFlag = trim(input('validFlag'));
+            if (!preg_match('/^\d{1,5}$/', $validFlag))      //uint16
+            {
+              echo '只能输入整数！uint16'; return;
+            }else{
+              $sendMsg = pack('S', $validFlag); //第一个不用 .=, 后面的要用.=连接
+            }
 
-            //  $objectRightAscension = trim($_POST['objectRightAscension']);
-            //  $sendMsg .= pack('d', $objectRightAscension);      //DOUBLE64 
+        }else{ 
+            $sendMsg .= pack('S', 0);   //uint16
+        } */
+		
+		 if (input('?post.validFlag'))  
+        {
+            $validFlag = trim(input('validFlag'));
+            if (!preg_match('/^\d{1,5}$/', $validFlag))      //uint16
+            {
+              echo '只能输入整数！uint16'; return;
+            }else{
+              $sendMsg = pack('S', $validFlag); //第一个不用 .=, 后面的要用.=连接
+            }
 
-            //  $objectDeclination = trim($_POST['objectDeclination']);
-            //  $sendMsg .= pack('d', $objectDeclination);      //DOUBLE64 
+        }else{ 
+            $sendMsg .= pack('S', 0);   //uint16
+        }
 
-            //  $objectEpoch =  trim($_POST['objectEpoch']);
-            //  $sendMsg .= pack('l', $objectEpoch);      //UINT16 n:无符号16整数
-
-            //  $objectBand =  trim($_POST['objectBand']);
-            //  $sendMsg .= pack('C', $objectBand);      //UINT8 C:无符号8位整数
-
-            //  $objectFilter = trim($_POST['objectFilter']);
-            //  $sendMsg .= pack('l', $objectFilter);      //UINT16 n:无符号16整数
-
-            //  $isSaveImage =  trim($_POST['isSaveImage']);
-            //  $sendMsg .= pack('l', $isSaveImage);      //UINT16 n:无符号16整数
-
-            //  $weatherGatherTime =  trim($_POST['weatherGatherTime']);
-            //  $sendMsg .= pack('L', $weatherGatherTime);      //UINT32 L:无符号32整数
-
-            //  $temperature = trim($_POST['temperature']);
-            //  $sendMsg .= pack('d', $temperature);      //DOUBLE64
-
-            //  $humidity = trim($_POST['humidity']);
-            //  $sendMsg .= pack('d', $humidity);      //DOUBLE64
-
-            //  $windSpeed = trim($_POST['windSpeed']);
-            //  $sendMsg .= pack('d', $windSpeed);      //DOUBLE64
-
-            //  $pressure = trim($_POST['pressure']);
-            //  $sendMsg .= pack('d', $pressure);      //DOUBLE64
-
-            //  $skyGatherTime = trim($_POST['skyGatherTime']);
-            //  $sendMsg .= pack('L', $skyGatherTime);      //UINT32 L:无符号32整数
-
-            //  $skyState =  trim($_POST['skyState']);
-            //  $sendMsg .= pack('l', $skyState);      //UINT16 n:无符号16整数
-
-            // $clouds =  trim($_POST['clouds']);
-            // $sendMsg .= pack('l', $clouds);      //UINT16 n:无符号16整数
-
-            // $seeingGatherTime =  trim($_POST['seeingGatherTime']);
-            // $sendMsg .= pack('L', $seeingGatherTime);      //UINT32 L:无符号32整数
-
-            // $seeing = trim($_POST['seeing']);
-            // $sendMsg .= pack('d', $seeing);      //DOUBLE64
-
-            // $dustGatherTime =  trim($_POST['dustGatherTime']);
-            // $sendMsg .= pack('L', $dustGatherTime);      //UINT32 L:无符号32整数
-
-            // $dust = trim($_POST['dust']);
-            // $sendMsg .= pack('d', $dust);      //DOUBLE64
-
-            // $AMS = trim($_POST['AMS']);
-            // $sendMsg .= pack('d', $AMS);      //DOUBLE64
-
-            // $extinctionGatherTime =  trim($_POST['extinctionGatherTime']);
-            // $sendMsg .= pack('L', $extinctionGatherTime);      //UINT32 L:无符号32整数
-
-            // $rightAscension = trim($_POST['rightAscension']);
-            // $sendMsg .= pack('d', $rightAscension);      //DOUBLE64
-
-            // $declination = trim($_POST['declination']);
-            // $sendMsg .= pack('d', $declination);      //DOUBLE64
-
-            // $band =  trim($_POST['band']);
-            // $sendMsg .= pack('C', $band);      //UINT8 C:无符号8位整数
-
-            // $extinctionFactor1 = trim($_POST['extinctionFactor1']);
-            // $sendMsg .= pack('d', $extinctionFactor1);      //DOUBLE64
-
-            // $extinctionFactor2 = trim($_POST['extinctionFactor2']);
-            // $sendMsg .= pack('d', $extinctionFactor2);      //DOUBLE64
-
-            // $extinctionFactor3 = trim($_POST['extinctionFactor3']);
-            // $sendMsg .= pack('d', $extinctionFactor3);      //DOUBLE64
-
-            // $telescopeRightAscension = trim($_POST['telescopeRightAscension']);
-            // $sendMsg .= pack('d', $telescopeRightAscension);      //DOUBLE64
-
-            // $telescopeDeclination = trim($_POST['telescopeDeclination']);
-            // $sendMsg .= pack('d', $telescopeDeclination);      //DOUBLE64
-
-            // $focusLength = trim($_POST['focusLength']);
-            // $sendMsg .= pack('d', $focusLength);      //DOUBLE64
-
-            // $frameNum = trim($_POST['frameNum']);
-            // $sendMsg .= pack('L', $frameNum);      //UINT32 L:无符号32整数
-
-            //echo $sendMsg;
-
-            //socket发送数据
-            //
-            function udpGet ($sendMsg = '', $ip = '192.168.2.125', $port = '4545')
-            { 
-              $handle = stream_socket_client("udp://{$ip}:{$port}", $errno, $errstr); 
-
-              if( !$handle ){
-               echo "ERROR: {$errno} - {$errstr}\n"; 
-              } 
-
-
-              fwrite($handle, $sendMsg."\n");
-              
-              fclose($handle); 
-              
-            } 
-            //socket发送数据
-            $send = udpGet($sendMsg); 
-
-            /*function udpGet ($sendMsg = '', $ip = '192.168.2.125', $port = '4545')
-            { 
-                $handle = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-
-                if (!$handle)
-                {
-                    echo '数据通信失败！';
-                    return; 
-                }
-                
-                $connect = socket_connect($handle, $ip, $port);
-
-                if (!$connect)
-                {
-                    echo '连接后台控制中心失败!';
-                    return;
-                }
-
-                //发送数据
-                socket_write($handle, $sendMsg);
-            } 
-            //socket发送数据
-            $send = udpGet($sendMsg); */
-
-        }else{//未登录，显示登录页
-
-            $this->error('请完成注册/登录后，再进行相关操作！', 'index/index');
-        }            
+        // if (input('?post.startTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //uint32
+        // }
         
+        // if (input('?post.duration'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //double64
+        // }
+             
+        // if (input('?post.delay'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //double64
+        // }    
+
+                
+        // if (input('?post.objectName'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('a', '0');   //uint8
+        // }     
+    
+        // if (input('?post.objectType'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //uint16
+        // } 
+            
+        // if (input('?post.objectRightAscension'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+            
+        // if (input('?post.objectDeclination'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+        
+        // if (input('?post.objectEpoch'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.objectBand'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('a', '0');   //UINT8
+        // }
+
+        // if (input('?post.objectFilter'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //UINT16
+        // }
+
+        // if (input('?post.isSaveImage'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //UINT16
+        // }
+
+        // if (input('?post.weatherGatherTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //UINT32
+        // }
+
+        // if (input('?post.temperature'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.temperature'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.humidity'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+         
+        // if (input('?post.windSpeed'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }  
+
+        // if (input('?post.pressure'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.skyGatherTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //UINT32
+        // }
+
+        // if (input('?post.skyState'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //UINT16
+        // }
+
+        // if (input('?post.clouds'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('S', 0);   //UINT16
+        // }
+
+        // if (input('?post.seeingGatherTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //UINT32
+        // }
+
+        // if (input('?post.seeing'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.dustGatherTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //UINT32
+        // }
+
+        // if (input('?post.dust'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.AMS'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.extinctionGatherTime'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.rightAscension'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.declination'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.band'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('a*', '0');   //UINT8
+        // }
+
+        // if (input('?post.extinctionFactor1'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.extinctionFactor2'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.extinctionFactor3'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.telescopeRightAscension'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.telescopeDeclination'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.focusLength'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('d', 0);   //DOUBLE64
+        // }
+
+        // if (input('?post.frameNum'))
+        // {
+        //     $sendMsg .= $packData;         
+        // }else{
+        //     $sendMsg .= pack('L', 0);   //DOUBLE64
+        // }
+
+        //瓶接完整pack数据
+       // $sendMsg = $headInfo . $sendMsg;
+       $sendMsg = $headInfo;
+        //socket发送数据
+        echo udpSend($sendMsg);
+
     }
 
 }
