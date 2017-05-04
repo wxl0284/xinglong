@@ -2,6 +2,10 @@
 <html>
 <head>
     {load href='/static/js/jquery-1.8.3.min.js'}
+	<style>
+		a {text-decoration:none;}
+		li {line-height:30px;}
+	</style>
 </head>
 <body>
 	<form id='gimbalCtrl'>
@@ -17,7 +21,7 @@
                         找零:<input type="text" class='command' name='findHome'  />
                         </li>
                         <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' dataType='double64' dataName='duration' value='3'> 
-                        跟踪恒星：<input type="text" class='command' name='TrackStar' />
+                        跟踪恒星：
 						<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赤经：<input type="text" class='command' name='rightAscension' />
                         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赤纬：<input type="text" class='command' name='declination' />
                         <br />历元：<input type="text" class='command' name='epoch' />
@@ -25,51 +29,55 @@
 							<input type="text" class='command' name='speed' />
                         </li>
                         <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' dataType='double64' dataName='delay' value='4'>
-                        设置目标名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称：<input type="text" class='command' name='command3' />
+                        设置目标名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称：<input type="text" class='command' name='objectName' />
                         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标类型：
-							<select name="" style='width:103px;'>
-								<option value="">恒星</option>
-								<option value="">太阳</option>
-								<option value="">月亮</option>
-								<option value="">彗星</option>
-								<option value="">行星</option>
-								<option value="">卫星</option>
-								<option value="">固定位置</option>
-							</select>
+							<input type="text" class='command' name='objectType' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' dataType='uint8' dataName='objectName' value='5' />
-                        指向固定位置:<input type="text" class='command' name='command5' />
+                        指向固定位置:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方位：
+							<input type="text" class='command' name='azimuth' />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;俯仰：
+							<input type="text" class='command' name='elevation' />
                         </li>
                         <li class='li fl'>  <input type="radio" name='command' dataType='uint16' dataName='objectType' value='6' />
-                        轴3指向固定位置:<input type="text" class='command' name='command6' />
+                        轴3指向固定位置:<input type="text" class='command' name='position' />
                         </li>
-                        <li class='li fl'>  <input type="radio" name='command' dataType='double64' dataName='objectRightAscension' value='7' /> 
-                        设置轴3工作模式:<input type="text" class='command' name='command7' />
+                        <li class='li fl'>  <input type="radio" name='command' dataType='double64'  value='7' /> 
+                        设置轴3工作模式:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模式：
+							<input type="text" class='command' name='mode' />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起偏角：
+							<input type="text" class='command' name='polarizingAngle' />
                         </li>
                         </li>
                         <li class='li fl'>  <input type="radio" name='command' dataType='double64' dataName='objectDeclination' value='8' />
-                        停止:<input type="text" class='command' name='command8' />
+                        停止:<input type="text" class='command' name='stop' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' value='9' />
-                        设置跟踪速度:<input type="text" class='command' name='command9' />
+                        设置跟踪速度:<input type="text" class='command' name='TrackSpeed' />
                          </li>
                         <li class='li fl'>   <input type="radio" name='command' value='10' />
-                        复位:<input type="text" class='command' name='command10' />
+                        复位:<input type="text" class='command' name='park' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'> <input type="radio" name='command' value='11' />
-                        恒速运动:<input type="text" class='command' name='command11' />
+                        恒速运动:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速度：
+							<input type="text" class='command' name='FixedMoveAxis' />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轴：
+							<input type="text" class='command' name='FixedMoveSpeed' />
                         </li>
                         <li class='li fl'>  <input type="radio" name='command' value='12' />
-                        位置修正:<input type="text" class='command' name='command12' />
+                        位置修正:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轴：
+							<input type="text" class='command' name='PositionCorrectAxis' />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修正值：
+							<input type="text" class='command' name='PositionCorrectVal' />
                          </li>
                         <li class='li fl'>   <input type="radio" name='command' value='13' />
-                        镜盖操作: <input type="text" class='command' name='command13' />
+                        镜盖操作: <input type="text" class='command' name='openCover' placeholder='输入整数' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' value='14' />
-                         焦点切换镜操作:<input type="text" class='command' name='command14' />
+                         焦点切换镜操作:<input type="text" class='command' name='setFocusType' placeholder='输入整数' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' value='15' />
-                        急停:<input type="text" class='command' name='command15' />
+                        急停:<input type="text" class='command' name='emergenceStop' name='setFocusType' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'>    <input type="radio" name='command' value='16' />
                         保存同步数据:<input type="text" class='command' name='command16' />
@@ -96,7 +104,7 @@
                                 //执行ajax
                                 $.ajax ({
                                        type: 'post',
-                                       url : '/test/dev/dev1_zhuanTai_send/',
+                                       url : '/test/dev/dev1GimbalSendData',
                                       data : formData,
                                       processData : false,
                                       contentType : false,  
