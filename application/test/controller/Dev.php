@@ -286,7 +286,7 @@ class Dev extends Controller
 			$sendMsg = $headInfo;
 			echo udpSend($sendMsg);		
 		} */
-		
+	}	
 		//发送dev1 ccd数据
 		public function dev1CcdSendData ()
 		{
@@ -352,7 +352,6 @@ class Dev extends Controller
 		
 		//XXX
 		
-	}
 	
 
 }
