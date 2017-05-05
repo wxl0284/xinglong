@@ -1,0 +1,43 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    {load href='/static/js/jquery-1.8.3.min.js'}
+    {load href='/static/js/fits.js'}
+	<style>
+
+	</style>
+</head>
+<body>
+	<script>
+    var FITS = astro.FITS;
+      
+  // Define a callback function for when the FITS file is received
+  var callback = function() {
+        
+    // Get the first header-dataunit containing a dataunit
+    var hdu = this.getHDU();
+        
+    // Get the first header
+    var header = this.getHeader();
+
+    // Read a card from the header
+    var bitpix = header.get('BITPIX');
+        
+    // Get the dataunit object
+    var dataunit = hdu.data;
+        
+    // Do some wicked client side processing ...
+}
+      
+  // Set path to FITS file
+  var url = "/static/image/fitImage/RU_152E_N_002.fit";
+      
+  // Initialize a new FITS File object
+  var fits = new FITS(url, callback);
+    alert(fits); 
+  // Alternatively, the FITS object may be initialized using the HTML File API.
+  //var fits = new FITS.File(fileObj, callback);
+      
+    </script>
+</body>
+</html>

@@ -10,17 +10,16 @@
 <body>
 	<form id='gimbalCtrl'>
                        <!--  <input type="hidden" name="type" value='uint16' /> -->
-                        <input type="hidden" name="at" value="001" />
-                        <input type="hidden" name="device" value="002" />
-						<input type="hidden" name="operation" value="003" />
-						<!--测试阶段：每次提交指令 都对operation赋值 -->
+                        <input type="hidden" name="at" value="32" />
+                        <input type="hidden" name="device" value="64" />
                          <li class='li fl'> <input type="radio" name='command' dataType='uint16' value='1'>
+                       <!-- 后台每个指令的$operation对应此单选框的value值 -->
                          连接:<input type="text" class='command' name='connect' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' dataType='uint32' dataName='startTime' value='2'> 
                         找零:<input type="text" class='command' name='findHome'  />
                         </li>
-                        <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' dataType='double64' dataName='duration' value='3'> 
+                        <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' dataType='double64' value='3'> 
                         跟踪恒星：
 						<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赤经：<input type="text" class='command' name='rightAscension' />
                         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;赤纬：<input type="text" class='command' name='declination' />
@@ -28,7 +27,7 @@
                         <br />跟踪速度：
 							<input type="text" class='command' name='speed' />
                         </li>
-                        <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' dataType='double64' dataName='delay' value='4'>
+                        <li class='li fl border' style='margin-right:6px;'>   <input type="radio" name='command' value='4'>
                         设置目标名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称：<input type="text" class='command' name='objectName' />
                         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标类型：
 							<input type="text" class='command' name='objectType' />
@@ -39,10 +38,10 @@
 							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;俯仰：
 							<input type="text" class='command' name='elevation' />
                         </li>
-                        <li class='li fl'>  <input type="radio" name='command' dataType='uint16' dataName='objectType' value='6' />
-                        轴3指向固定位置:<input type="text" class='command' name='position' />
+                        <li class='li fl'>  <input type="radio" name='command' dataType='uint16' value='6' />
+                        轴3指向固定位置:<input type="text" class='command' name='slewDerotator' />
                         </li>
-                        <li class='li fl'>  <input type="radio" name='command' dataType='double64'  value='7' /> 
+                        <li class='li fl'>  <input type="radio" name='command'  value='7' /> 
                         设置轴3工作模式:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模式：
 							<input type="text" class='command' name='mode' />
 							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起偏角：

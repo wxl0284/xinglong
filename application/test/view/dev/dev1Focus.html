@@ -1,0 +1,83 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    {load href='/static/js/jquery-1.8.3.min.js'}
+	<style>
+		a {text-decoration:none;}
+		li {line-height:30px;}
+	</style>
+</head>
+<body>
+	<form id='focusCtrl'>
+	   <!--  <input type="hidden" name="type" value='uint16' /> -->
+		<input type="hidden" name="at" value="001" />
+		<input type="hidden" name="device" value="002" />
+		<input type="hidden" name="operation" value="003" />
+		<!--测试阶段：每次提交指令 都对operation赋值 -->
+		 <li class='li fl'> <input type="radio" name='command'  value='1'>
+		 连接:<input type="text" class='command' name='connect' placeholder='整数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='2'>
+		 设置目标位置:<input type="text" class='command' name='setPosition' placeholder='小数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 设置恒速转动:<input type="text" class='command' name='speed' placeholder='小数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='4'>
+		 停止运动:<input type="text" class='command' name='stop' placeholder='随便给个值' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='5'>
+		 使能温度补偿:<input type="text" class='command' name='enable' placeholder='整数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='6'>
+		 使能温度补偿系数:<input type="text" class='command' name='coefficient' placeholder='整数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='7'>
+		 找零:<input type="text" class='command' name='coefficient' placeholder='随便给个值' />
+		 </li>
+         
+		<div class="clear">
+            <input type="button" id="gimbalCtrlBtn" value="提交操作指令">
+        </div>
+	 </form>
+    <script>
+        $(function () {
+
+             var form = $('#focusCtrl');
+         
+
+            //按钮提交事件
+              $("#gimbalCtrlBtn").click(function (){
+
+                    var formData = new FormData(form[0]);
+
+                    //执行ajax
+                    $.ajax ({
+                          type: 'post',
+                          url : '/test/dev/dev1FocusSendData',
+                          data : formData,
+                          processData : false,
+                          contentType : false,  
+                           
+                         success:  function (info) {
+                            alert(info);
+                            
+                          },
+
+                         error:  function () {
+                            alert('网络异常,请重新提交');
+                         },
+                    });
+
+              });  
+             
+           })
+    </script>
+</body>
+</html>

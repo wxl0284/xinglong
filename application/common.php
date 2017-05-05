@@ -8,7 +8,7 @@
 
 //返回值： pack成功，返回pack好的结构体数据
 
-function packHead ($at, $device, $sequence, $operation, $length)
+function packHead ($at, $device, $sequence, $operation, $length, $msg=6)
 {
    // $head = '';                 //定义变量，存储pack后的数据
     //引入$sequence，此次pack自增1
