@@ -34,7 +34,10 @@
       
   // Initialize a new FITS File object
   var fits = new FITS(url, callback);
-    alert(fits); 
+    for (var p in fits)
+    {
+        document.write(p + '::' + fits[p] + '<br />');
+    }
   // Alternatively, the FITS object may be initialized using the HTML File API.
   //var fits = new FITS.File(fileObj, callback);
       

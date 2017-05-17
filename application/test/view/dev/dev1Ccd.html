@@ -10,10 +10,8 @@
 <body>
 	<form id='ccdCtrl'>
 	   <!--  <input type="hidden" name="type" value='uint16' /> -->
-		<input type="hidden" name="at" value="001" />
-		<input type="hidden" name="device" value="002" />
-		<input type="hidden" name="operation" value="003" />
-		<!--测试阶段：每次提交指令 都对operation赋值 -->
+		<input type="hidden" name="at" value="37" />
+		<input type="hidden" name="device" value="65" />
 		 <li class='li fl'> <input type="radio" name='command' dataType='uint16' value='1'>
 		 连接:<input type="text" class='command' name='connect' placeholder='随便给个值' />
 		 </li>
@@ -31,10 +29,10 @@
 		<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前拍摄目标赤经：<input type="text" class='command' name='objectRightAscension' placeholder='小数' />
 		<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前拍摄目标赤纬：<input type="text" class='command' name='objectDeclination' placeholder='小数' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前拍摄目标历元：<input type="text" class='command' name='objectEpoch' placeholder='整数' /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前拍摄波段：<input type="text" class='command' name='objectBand' placeholder='数字字母' />
-        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拍摄波段滤光片系统：<input type="text" class='command' name='objectFilter' placeholder='数字字母' />
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拍摄波段滤光片系统：<input type="text" class='command' name='objectFilter' placeholder='数字' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否保存图像：<input type="text" class='command' name='isSaveImage' placeholder='整数' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;气象数据采集时间：<input type="text" class='command' name='weatherGatherTime' placeholder='整数' />
-        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;温度：<input type="text" class='command' name='temperature' placeholder='小数' />
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;温度：<input type="text" class='command' name='temperature1' placeholder='小数' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;湿度：<input type="text" class='command' name='humidity' placeholder='小数' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;风速：<input type="text" class='command' name='windSpeed' placeholder='小数' />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;气压：<input type="text" class='command' name='pressure' placeholder='小数' />
@@ -124,12 +122,6 @@
 		<li class='li fl'>    <input type="radio" name='command' value='16' />
 		set over scan:<input type="text" class='command' name='isOverScan' placeholder='随便给个值' />
 		  </li>
-		<li class='li fl'> <input type="radio" name='command' value='17' />
-		跟踪卫星:<input type="text" class='command' name='command17' />
-		</li>
-		<li class='li fl'> <input type="radio" name='command' value='17' />
-		属性设置:<input type="text" class='command' name='command17' />
-		</li>
 		<div class="clear"><input type="button" id="gimbalCtrlBtn" value="提交操作指令"></div>
 	 </form>
         <script>

@@ -1,0 +1,113 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    {load href='/static/js/jquery-1.8.3.min.js'}
+	<style>
+		a {text-decoration:none;}
+		li {line-height:30px;}
+	</style>
+</head>
+<body>
+	<form id='filterCtrl'>
+	   <!--  <input type="hidden" name="type" value='uint16' /> -->
+		
+		<input type="hidden" name="device" value="66" />
+		 <li class='li fl'> <input type="radio" name='command'  value='1'>
+		 at:<input type="text" class='command' name='at' placeholder='整数' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='2'>
+		 user:<input type="text" class='command' name='user' placeholder='数字字母' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 project:<input type="text" class='command' name='project' placeholder='数字字母' />
+		 </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 target:<input type="text" class='command' name='target' placeholder='数字字母' />
+		 </li>
+         
+          <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 type:<input type="text" class='command' name='type' placeholder='整数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 rightAscension:<input type="text" class='command' name='rightAscension' placeholder='小数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 declination:<input type="text" class='command' name='declination' placeholder='小数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 epoch:<input type="text" class='command' name='epoch' placeholder='整数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 exposureTime:<input type="text" class='command' name='exposureTime' placeholder='小数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 delayTime:<input type="text" class='command' name='delayTime' placeholder='小数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 exposureCount:<input type="text" class='command' name='exposureCount' placeholder='整数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 filter:<input type="text" class='command' name='filter' placeholder='数字字母' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 gain:<input type="text" class='command' name='gain' placeholder='整数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 bin:<input type="text" class='command' name='bin' placeholder='整数' />
+         </li>
+         
+         <li class='li fl'> <input type="radio" name='command'  value='3'>
+		 readout:<input type="text" class='command' name='readout' placeholder='整数' />
+         </li>
+         
+		<div class="clear">
+            <input type="button" id="gimbalCtrlBtn" value="提交操作指令">
+        </div>
+	 </form>
+    <script>
+        $(function () {
+
+             var form = $('#filterCtrl');
+         
+
+            //按钮提交事件
+              $("#gimbalCtrlBtn").click(function (){
+
+                    var formData = new FormData(form[0]);
+
+                    //执行ajax
+                    $.ajax ({
+                          type: 'post',
+                          url : '/test/dev/dev1PlanSendData',
+                          data : formData,
+                          processData : false,
+                          contentType : false,  
+                           
+                         success:  function (info) {
+                            alert(info);
+                            
+                          },
+
+                         error:  function () {
+                            alert('网络异常,请重新提交');
+                         },
+                    });
+
+              });  
+             
+           })
+    </script>
+</body>
+</html>

@@ -8,9 +8,40 @@
 	</style>
 </head>
 <body>
+    <input id='useAt' type='button' value='接管望远镜'>
+    <script>
+        $(function (){
+            var flag = 0;
+            $('#useAt').click(function () {
+               var e = $('#useAt');
+               flag ++;
+               if (e.val() == '接管望远镜') val = 1;
+               if (e.val() == '取消接管')   val = 0;
+                $.ajax({
+                    type : 'post',
+                    url : '/test/dev/dev1TakeOver',
+                    data : {takeOver:val,},             
+                    success:  function (info) {
+                    alert(info);
+                    if (flag % 2 == 1)
+                    {
+                        e.val('取消接管');
+                    }else if(flag % 2 == 0){
+                        e.val('接管望远镜');
+                    }
+                    
+                   },
+                   error:  function () {
+                    alert('网络异常,请重新提交');
+                 },
+                });
+             
+            });
+        })
+    </script>
 	<form id='gimbalCtrl'>
                        <!--  <input type="hidden" name="type" value='uint16' /> -->
-                        <input type="hidden" name="at" value="32" />
+                        <input type="hidden" name="at" value="37" />
                         <input type="hidden" name="device" value="64" />
                          <li class='li fl'> <input type="radio" name='command' dataType='uint16' value='1'>
                        <!-- 后台每个指令的$operation对应此单选框的value值 -->
@@ -52,15 +83,17 @@
                         停止:<input type="text" class='command' name='stop' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'>  <input type="radio" name='command' value='9' />
-                        设置跟踪速度:<input type="text" class='command' name='TrackSpeed' />
+                        设置速度修正:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轴：<input type="text" class='command' name='axis' />
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;修正值：
+							<input type="text" class='command' name='correction' />
                          </li>
                         <li class='li fl'>   <input type="radio" name='command' value='10' />
                         复位:<input type="text" class='command' name='park' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'> <input type="radio" name='command' value='11' />
-                        恒速运动:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速度：
+                        恒速运动:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轴：
 							<input type="text" class='command' name='FixedMoveAxis' />
-							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轴：
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速度：
 							<input type="text" class='command' name='FixedMoveSpeed' />
                         </li>
                         <li class='li fl'>  <input type="radio" name='command' value='12' />
@@ -79,13 +112,13 @@
                         急停:<input type="text" class='command' name='emergenceStop' name='setFocusType' placeholder='随便给个值' />
                          </li>
                         <li class='li fl'>    <input type="radio" name='command' value='16' />
-                        保存同步数据:<input type="text" class='command' name='command16' />
+                        保存同步数据:<input type="text" class='command' name='saveSyncData' />
                           </li>
                         <li class='li fl'> <input type="radio" name='command' value='17' />
                         跟踪卫星:<input type="text" class='command' name='command17' />
                         </li>
 						<li class='li fl'> <input type="radio" name='command' value='17' />
-                        属性设置:<input type="text" class='command' name='command17' />
+                        属性设置:<input type="text" class='command' name='configProperties' />
                         </li>
                         <div class="clear"><input type="button" id="gimbalCtrlBtn" value="提交操作指令"></div>
                      </form>
