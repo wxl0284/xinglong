@@ -262,9 +262,9 @@ function udpSend ($sendMsg = '', $ip = '192.168.0.115', $port = '4747')
 
   if($res)
   {
-    return '指令发送成功!';
+    return '发送成功!';
   }else{
-    return '指令发送失败!';
+    return '发送失败!';
   }
   
 } 

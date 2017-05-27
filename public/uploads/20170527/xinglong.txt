@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+ <script>
+  var isInt = new RegExp("^-?\\d+$");
+  var a = '12a3';
+  if (!a.match(isInt)) {alert('no匹配');}
+ </script>
+</body>
+</html>

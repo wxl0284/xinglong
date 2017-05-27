@@ -59,7 +59,7 @@ enum ENUM_AT_AT_TYPE
     AT100,
     AT85,
     AT80,
-    AT60,
+    AT60, //37
     AT50,
     ATAE,
     AT_AT_NUM
@@ -72,13 +72,13 @@ enum ENUM_AT_AT_TYPE
 */
 enum ENUM_AT_DEVICE_TYPE{
     GIMBAL=64,
-    CCD,
-    FILTER,
+    CCD,//65
+    FILTER,//66
     SLAVEDOME, //67
     FULLOPENEDDOME, //68
     FOCUS,  //69
-    GUIDESCOPE,
-    DPM
+    GUIDESCOPE,//70
+    DPM //71
 };
 
 /*!

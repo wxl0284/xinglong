@@ -71,15 +71,27 @@ class Front extends Controller
 	    	return $this->fetch('upload');
 	    }
 
-	    //文件上传
+	    //文件上传/////////////////////////////////////////////////
 		public function upload ()
 		{
 			// 获取表单上传文件 
 			$file = request()->file('file');
+			//上传文件验证
+			$result = $this->validate(
+							['file' => $file],
+							['file' => 'file|require|fileExt:txt|fileSize:1024|fileMime:txt'],
+							['file.require' => '请选择上传文件',
+							 'file.fileExt' => '文件后缀名必须为txt',
+							 'file.fileSize' => '文件大小超出1k',
+							 'file.fileMime' => '文件格式错误']);
+			if (true !== $result)
+			{
+				return $this->error($result);
+			}
 			// 移动到框架应用根目录/public/uploads/ 目录下
 			$dir = date('Y/m/d', time());
 			$dir = str_replace('/', '', $dir);
-			$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/'.$dir,'');
+			$info = $file/* ->validate(['size'=>10000,'ext'=>'txt', 'type'=>'txt']) */->move(ROOT_PATH . 'public' . DS . 'uploads/'.$dir,'');
 			if($info){
 				// 成功上传后 获取上传信息
 				echo '文件上传成功！';
